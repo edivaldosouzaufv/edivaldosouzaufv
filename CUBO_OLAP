@@ -1,0 +1,168 @@
+<Schema name="New Schema1">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Tempo">
+    <Hierarchy name="Calendario" visible="true" hasAll="true" allMemberName="Todos os Calendarios" primaryKey="date_pk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Ano" visible="true" column="year_number" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+      <Level name="Trimestre" visible="true" column="quarter_name" type="String" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never">
+      </Level>
+      <Level name="Mes" visible="true" column="month_number" nameColumn="month_name" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="M&#234;s">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Faixa Etaria Tempo" visible="true" cache="true" enabled="true">
+    <Table name="fato_faixa_etaria_servico" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_funcionario_pk" highCardinality="false" name="Funcionario" caption="Funcion&#225;rio">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todos os Funconarios" primaryKey="codigo">
+        <Table name="dim_funcionario" schema="public">
+        </Table>
+        <Level name="Matricula Siape" visible="true" column="matriculasiape" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Matr&#237;cula Siape">
+        </Level>
+        <Level name="Matricula UFV" visible="true" column="matriculaufv" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Matr&#237;cula UFV">
+        </Level>
+        <Level name="Nome" visible="true" column="nomeservidor" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_status_faixa_pk" highCardinality="false" name="Faixa Etaria">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todas as Faixas Etarias" primaryKey="codigo">
+        <Table name="dim_status_faixa" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Descricao" visible="true" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_status_tempo_pk" highCardinality="false" name="Tempo Servico" caption="Tempo Servi&#231;o">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todos os Tempos Servicos" primaryKey="codigo">
+        <Table name="dim_status_tempo" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Decricao" visible="true" column="codigo" nameColumn="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Codigo" visible="true" column="codigo" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_lotacao_pk" highCardinality="false" name="Lotacao" caption="Lotacao">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todas as Lotacoes" primaryKey="codigo">
+        <Table name="dim_lotacao" schema="public">
+        </Table>
+        <Level name="Orgao" visible="true" column="siglasuperior" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Org&#227;o">
+        </Level>
+        <Level name="SubOrgao" visible="true" column="subsiglasuperior" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="SubOrg&#227;o">
+        </Level>
+        <Level name="Sigla UFV Estrutura" visible="true" column="siglaufvestrutura" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Nome" visible="true" column="lotacaodescricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_lotacao_siape_pk" highCardinality="false" name="Lotacao_Siape" caption="Lotacao_Siape">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todas as Lotacoes Siape" primaryKey="codigo">
+        <Table name="dim_lotacao" schema="public">
+        </Table>
+        <Level name="Orgao" visible="true" column="siglasuperior" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Org&#227;o">
+        </Level>
+        <Level name="SubOrgao" visible="true" column="subsiglasuperior" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="SubOrg&#227;o">
+        </Level>
+        <Level name="Sigla UFV Estrutura" visible="true" column="siglaufvestrutura" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Nome" visible="true" column="lotacaodescricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="New Hierarchy 1" visible="true" hasAll="true" allMemberName="Todas as Lotacoes" allMemberCaption="Todas as Lotacoes" primaryKey="codigo">
+        <Table name="dim_lotacao" schema="public">
+        </Table>
+        <Level name="Orgao" visible="true" column="siglasuperior" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_campus_pk" highCardinality="false" name="Campus">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todos os Campus" primaryKey="codigo">
+        <Table name="dim_campus" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Descricao" visible="true" column="campus_descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="New Hierarchy 1" visible="true" hasAll="true" allMemberName="Todos os Campi" primaryKey="codigo">
+        <Table name="dim_campus" schema="public">
+        </Table>
+        <Level name="Descricao" visible="true" column="campus_descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_sexo_pk" highCardinality="false" name="Sexo">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todos os Sexos" primaryKey="codigo">
+        <Table name="dim_sexo" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_cargo_status" highCardinality="false" name="Cargo Status">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todos os Cargos Status" primaryKey="codigo">
+        <Table name="dim_cargo_status" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Sigla" visible="true" column="sigla" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_cargo_pk" highCardinality="false" name="Cargo">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todos os Cargos" primaryKey="codigo">
+        <Table name="dim_cargo" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="cargodescricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Situacao Atual" visible="true" column="situacaoatual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Situa&#231;&#227;o Atual">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="codigo_tempo_pk" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_servidor_pk" highCardinality="false" name="Servidor">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" allMemberName="Todos os Servidores" primaryKey="codigo">
+        <Table name="dim_servidor" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_status_aposentadoria_lei" highCardinality="false" name="Lei Aponsentatoria">
+      <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" primaryKey="codigo">
+        <Table name="dim_status_lei_aposentar" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nome_artigo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Tempo" name="Tempo Data Aponsentar" visible="true" foreignKey="codigo_data_aposentadoria" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Quantidade Servidores" column="codigo_funcionario_pk" datatype="Integer" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="Recebe Abono" column="abono" datatype="String" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="Servidores Aposentados" visible="true" cache="true" enabled="true">
+    <Table name="fator_funcionario_aposentadoria" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="codigo_funcionario_pk" highCardinality="false" name="Funcionario">
+      <Hierarchy name="NomeNew Hierarchy 0" visible="true" hasAll="true" primaryKey="codigo">
+        <Table name="dim_funcionario" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="nomeservidor" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="servidores" column="codigo_funcionario_pk" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
