@@ -1,0 +1,29 @@
+O Projeto teve a construção de um Data Mart, com ferramentas open source do conceito BI, para apoio as decisões  aos gestores de uma Instuição de Ensino Federal (IFEs). 
+Essa pesquisa pode implementada com adaptações em qualquer IFEs.
+Para essa pesquisa foram usadas as ferramentas da Suíte Pentago CE para o BI.
+Ferramentas:
+Processo ETL - Data Integration Pentaho (PDI)
+Cubo Olap - Schema Workbench
+OLAP - Pentaho Server CDE
+
+O projeto esta dividido em: 3 pastas (STG, DIM e Jobs); um arquivo com a modelagem UML multidimensional; com Cubo OLAP; e um Leia-me.
+Descrição das pastas:
+STG - Com a extração dos dados através de banco de dados OLTP, arquivos excel e TXT. Nessa fase é realizado todas as 3 fases do 
+processo ETL. Essa processio é realizado em um horario de menos demanda no banco de dados da Insituição.
+DIM - Aqui é realizado a conexão com as tabelas com prefixo STG, realizado mais tratamentos dos dados com as cargas nas tabelas DIM. 
+Logo depois de todos os dados estando prontos é relizado a do a carga nas tabelas de dimensões e na tabela Fato.
+Jobs - Aqui temos o agendamento e a organnização de cada transformações por meio do Jobs. Ele começa pela pasta STG e logo depois a DIM. 
+
+OBS: Antes de tudo é necessario a modelagem do Data Mart e a criação do banco de dados Multidimensional. Logo depois é necessário abrir a ferramenta PDI e acessar
+o Job "rotinas_Faixa_Etaria_Tempo_STG". AO acessar é preciso conectar a base de dados operacionais e com realizando os tratamentos, limpezas, unificações e otimizações dos dados 
+para realizar  carga na tabela STG. Depois das cargas nessas tabelas serem concluídas, a carga nas tabelas com preciso DIM pode ser realizado a qualquer momento com o Job "rotinas_Faixa_Etaria_Tempo_STG". Nesse job é realizado
+a cargas na tabelas DIM. Ao executar esse Job a carga na tabela Fato Faixa Etária é realizada também.
+Essa pesquisa resultou no desenvolvimento de 2 tabelas Fatos: "Faixa Etária tempo de Serviço" e "Servidores Aposentados".
+O mesmo procedimento para os servidores aposentados podem ser realizados com os jobs "Rotinas_Aposentadoria_STG" e "Rotinas_Aposentadoria_DIM".
+
+Para a Modelagem foi utlizado a ferramentas StarUMl versão 5.0 com suporte ao Perfil UML GeoProfile da Universidade Federal de Viçosa.
+Resultando num total de 14 tabelas de dimensões e 2 tabelas fatos conforme figura em anexo "Modelagem".
+
+Em anexo, temos a arquitetura do CUBO OLAP.
+
+
