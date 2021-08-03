@@ -1,0 +1,32 @@
+O Projeto teve a construção de um Data Mart, com ferramentas open source do conceito BI, para apoio a decisão aos gestores de uma Instuição Federal de Ensino (IFEs). 
+Essa pesquisa pode ser implementada em qualquer IFEs, com adaptações.
+Para essa pesquisa foram usadas as ferramentas da Suíte Pentaho CE para o BI, baixadas no sítio https://sourceforge.net/projects/pentaho.
+Ferramentas:
+Processo ETL - Pentaho Data Integration (PDI Kettle)
+Cubo OLAP - Schema Workbench
+OLAP - Pentaho Server CDE
+
+Para a Modelagem foi utilizada a ferramenta CASE StarUMl versão 5.0 com suporte ao Perfil UML GeoProfile da Universidade Federal de Viçosa.
+Adquirida no sítio http://www.dpi.ufv.br/projetos/geoprofile/download.html. A modelagem multidimensional resultatou num total de 14 tabelas de dimensões e 2 tabelas fatos conforme figura "Modelagem", em anexo .
+
+
+O projeto está dividido em: 3 pastas (STG, DIM e Jobs); um arquivo e uma imagem com a modelagem UML multidimensional; um arquvo com Cubo OLAP; e um arquivo Leia-me.
+Descrição das pastas:
+STG - È efetuada a extração dos dados através de banco de dados OLTP, arquivos excel e TXT. Nessa fase é realizada todas as 3 fases do 
+processo ETL.
+DIM - Aqui é realizado a conexão com as tabelas com prefixo STG e efetuada as cargas nas tabelas DIM. 
+Com os dados disponíveis nas dimensões com prefixo DIM, é realizada as cargas nas tabelas Fatos.
+Jobs - Aqui temos o agendamento e a organização de cada transformação por meio do Jobs.
+Na ferramenta PDI Kettle pode ser acessado o Job "rotinas_Faixa_Etaria_Tempo_STG", onde temos todos processos das tabelas STG em sequencia. Logo depois temos as rotinas 
+do Job "rotinas_Faixa_Etaria_Tempo_DIM", onde é realizado as cargas na tabelas de dimensões DIM e realizado as cargar nas tabelas fatos.
+
+
+OBS: Antes desse processo é necessario ter  a modelagem UML do projeto do Data Mart e a criação do banco de dados Multidimensional. 
+O banco de dados multidimensional utilizado foi o PostgreSQL versão 12.3, open source, e com a extensão PostGIS para suporte a banco de dados geográficos. 
+
+Essa pesquisa resultou no desenvolvimento de duas tabelas Fatos: "Faixa Etária tempo de Serviço" e "Servidores Aposentados".
+O mesmo procedimento acima foi realizado para os servidores aposentados, com os jobs "Rotinas_Aposentadoria_STG" e "Rotinas_Aposentadoria_DIM".
+Logo depois foi criado com a ferramenta Schema Workbench o cubo OLAP. O codigo fonte do Cubo OLAP encontra-se em anexo.
+Finalmente temos todas as cargas realizadas no DW e pronto para montar os Dashboards para as análises dos dados.
+
+
